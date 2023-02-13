@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello VehiculeController!{% endblock %}
+
+{% block body %}
+
+<h1 class="">Vehicule waouw</h1>
+<table class="table border ">
+  <thead>
+    <tr class="bg-dark text-white">
+      <th scope="col">Vehicule</th>
+      <th scope="col">Agence</th>
+      <th scope="col">Titre</th>
+      <th scope="col">Marque</th>
+      <th scope="col">modele</th>
+      <th scope="col">description</th>
+      <th scope="col">photo</th>
+      <th scope="col">prix</th>
+      <th scope="col">actions</th>
+      
+    </tr>
+
+  </thead>
+
+  <tbody>
+  {% for value in vehicules %}
+    <tr>
+      <th scope="row">{{value.id}}</th> 
+      <td>{{value.id}}</td>
+      <td>{{value.titre}}</td>
+      <td>{{value.marque}}</td>
+      <td>{{value.modele}}</td>
+      <td>{{value.description}}</td>
+     <td><img src="{{value.photo}}" alt="" width="150"></td>
+       {# <td>{{value.getisprix_journalier}}</td>  #}
+       <td></td>
+     <td>
+     <a href="?action=delete&id=<?= $values['id_vehicule'] ?>" >delete</a>
+      <a href="?action=update&id=<?= $values['id_vehicule'] ?>" >update</a>
+      <a href="?action=detail&id=<?= $values['id_vehicule'] ?>" >detail</a>
+</td>
+
+    {% endfor %}
+    
+  </tbody>
+</table>
+
+
+la
+{{form(FormVehicule)}}
+
+{% endblock %}
