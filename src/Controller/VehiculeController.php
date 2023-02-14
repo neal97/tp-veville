@@ -34,8 +34,23 @@ class VehiculeController extends AbstractController
         return $this->render('vehicule/index.html.twig', [
             'controller_name' => 'VehiculeController',
             'FormVehicule' => $form->createView(),
-            'vehicules' => $vehicules
+            'vehicules' => $vehicules,
+            'vehicule' => $vehicule    
         ]);
+    }
+
+    
+    #[Route('/vehicule/supprimer/{id}', name: 'delete_vehicule')]
+    public function category_supprimer(Vehicule $vehicule , EntityManagerInterface $manager)
+    {
+        
+        
+        $manager->remove($vehicule);
+        $manager->flush();
+        
+        $this->addFlash("success", "La categorie N°" . $vehicule->getId() ."a bien été supprimée");
+        
+        return $this->redirectToRoute("app_vehicule");
     }
 
 }
