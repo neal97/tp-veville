@@ -89,10 +89,7 @@ class MembreType extends AbstractType
                 ]
             ])
 
-            ->add('date_enregistrement', DateType::class,[
-                'widget'=>'choice',
-                'input'=> 'datetime_immutable'
-            ])
+            
 
         ->add('Enregistrer', SubmitType::class);
     }
