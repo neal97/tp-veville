@@ -39,7 +39,25 @@ class VehiculeController extends AbstractController
         ]);
     }
 
+
+
     
+    #[Route('/vehicule/detail/{id}', name: 'detail')]
+    public function category_detail($id, VehiculeRepository $reposV){
+
+        
+      $vehicule = $reposV->find($id);
+
+      
+      return $this->render("vehicule/vehicule_detail.html.twig",[
+       "details" => $vehicule
+   ]);
+}
+
+
+
+
+   
     #[Route('/vehicule/supprimer/{id}', name: 'delete_vehicule')]
     public function category_supprimer(Vehicule $vehicule , EntityManagerInterface $manager)
     {
