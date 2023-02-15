@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Constraints\DateTime;
 
 class MembreController extends AbstractController
-
+{
     #[Route('/membre', name: 'app_membre')]
     public function index(MembreRepository $repoMembre,Request $request, EntityManagerInterface $manager, UserPasswordHasherInterface $mdpHash ): Response
     {   
