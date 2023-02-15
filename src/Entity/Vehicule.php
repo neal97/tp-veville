@@ -16,7 +16,7 @@ class Vehicule
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'vehicules')]
-    private ?agences $id_agence = null;
+    private ?Agences $id_agence = null;
 
     #[ORM\Column(length: 200)]
     private ?string $titre = null;
@@ -49,12 +49,12 @@ class Vehicule
         return $this->id;
     }
 
-    public function getIdAgence(): ?agences
+    public function getIdAgence(): ?Agences
     {
         return $this->id_agence;
     }
 
-    public function setIdAgence(?agences $id_agence): self
+    public function setIdAgence(?Agences $id_agence): self
     {
         $this->id_agence = $id_agence;
 

@@ -15,7 +15,7 @@ class MembreController extends AbstractController
 {
     
     #[Route('/membres', name: 'membres')]
-    public function index(MembreRepository $repoMembre,Request $request, EntityManagerInterface $manager,Membre $membre): Response
+    public function index(MembreRepository $repoMembre,Request $request, EntityManagerInterface $manager): Response
     {
         // $membres = $repoMembre->findAll();
 

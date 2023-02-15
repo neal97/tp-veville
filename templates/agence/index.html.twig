@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AgenceController!{% endblock %}
+
+{% block body %}
+
+
+<table class="table">
+  <thead>
+
+  
+    <tr>
+      <th scope="col">Agence</th>
+      <th scope="col">titre</th>
+      <th scope="col">adresse</th>
+      <th scope="col">ville</th>
+      <th scope="col">cp</th>
+      <th scope="col">description</th>
+      <th scope="col">photo</th>
+      <th scope="col">action</th>
+    </tr>
+  </thead>  
+
+{% for agence in agences %}
+
+<tr>
+    <td>{{ agence.id }}</td>
+    <td>{{ agence.titre }}</td>
+    <td>{{ agence.adresse }}</td>
+    <td>{{ agence.ville }}</td>
+    <td>{{ agence.cp }}</td>
+    <td>{{ agence.description }}</td>
+    <td><img src="{{ agence.photo }}" width="100px"></td>
+
+    <td> <a href="{{ path('DetailAgence', {'id' : agence.id}) }}">Details</a>
+         <a href="{{ path('UpdateAgence', {'id' : agence.id}) }}">update</a>
+         <a href="{{ path('DeleteAgence', {'id' : agence.id}) }}">delete</a>
+     </td>
+    
+</tr>
+
+
+{% endfor %} 
+
+</table>
+
+{{ form_start(formAgence) }}
+
+
+
+{{ form_end(formAgence) }}
+{% endblock %}

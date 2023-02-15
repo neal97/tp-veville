@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="card m-2" style="width: 18rem;">
+
+    <div class="card-body">
+      <h5 class="card-title">ID {{details.id}}</h5>
+      <p>Titre: {{details.titre}}</p>
+      <p>Adresse: {{details.adresse}}</p>
+      <p>Ville: {{details.ville}}</p>
+      <p>CodePostal: {{details.cp}}</p>
+      <p>Description: {{details.description}}</p>
+      <img src= {{item.picture}} class="card-img-top" alt="..." href=''>
+    </div>
+
+  </div>
+
+  {% endblock %}

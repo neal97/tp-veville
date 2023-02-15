@@ -17,12 +17,12 @@ class Commande
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'commandes')]
-    private ?membre $id_membre = null;
+    private ?Membre $id_membre = null;
 
     #[ORM\ManyToOne(inversedBy: 'commandes')]
-    private ?vehicule $id_vehicule = null;
+    private ?Vehicule $id_vehicule = null;
 
-    #[ORM\OneToMany(mappedBy: 'commande', targetEntity: agences::class)]
+    #[ORM\OneToMany(mappedBy: 'commande', targetEntity: Agences::class)]
     private Collection $id_agence;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
@@ -38,7 +38,7 @@ class Commande
     private ?\DateTimeInterface $date_enregistrement = null;
 
     #[ORM\ManyToOne]
-    private ?agences $agence = null;
+    private ?Agences $agence = null;
 
     public function __construct()
     {
@@ -50,24 +50,24 @@ class Commande
         return $this->id;
     }
 
-    public function getIdMembre(): ?membre
+    public function getIdMembre(): ?Membre
     {
         return $this->id_membre;
     }
 
-    public function setIdMembre(?membre $id_membre): self
+    public function setIdMembre(?Membre $id_membre): self
     {
         $this->id_membre = $id_membre;
 
         return $this;
     }
 
-    public function getIdVehicule(): ?vehicule
+    public function getIdVehicule(): ?Vehicule
     {
         return $this->id_vehicule;
     }
 
-    public function setIdVehicule(?vehicule $id_vehicule): self
+    public function setIdVehicule(?Vehicule $id_vehicule): self
     {
         $this->id_vehicule = $id_vehicule;
 
@@ -82,7 +82,7 @@ class Commande
         return $this->id_agence;
     }
 
-    public function addIdAgence(agences $idAgence): self
+    public function addIdAgence(Agences $idAgence): self
     {
         if (!$this->id_agence->contains($idAgence)) {
             $this->id_agence->add($idAgence);
@@ -92,7 +92,7 @@ class Commande
         return $this;
     }
 
-    public function removeIdAgence(agences $idAgence): self
+    public function removeIdAgence(Agences $idAgence): self
     {
         if ($this->id_agence->removeElement($idAgence)) {
             // set the owning side to null (unless already changed)
@@ -152,12 +152,12 @@ class Commande
         return $this;
     }
 
-    public function getAgence(): ?agences
+    public function getAgence(): ?Agences
     {
         return $this->agence;
     }
 
-    public function setAgence(?agences $agence): self
+    public function setAgence(?Agences $agence): self
     {
         $this->agence = $agence;
 
