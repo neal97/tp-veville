@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="card m-2" style="width: 18rem;">
+    
+    <div class="card-body">
+      <h5 class="card-title">ID {{details.id}}</h5>
+      <p>Pseudo: {{details.pseudo}}</p>
+      <p>Nom: {{details.nom}}</p>
+      <p>Prenom: {{details.prenom}}</p>
+      <p>email: {{details.email}}</p>
+      <p>Civilité: {{details.civilite}}</p>
+      <p>Statut: {{details.statut}}</p>
+      <p>Date: {{details.DateEnregistrement | date('d-m-Y') }}</p>
+    </div>
+  </div>
+  
+  {% endblock %}

@@ -9,18 +9,38 @@
         <li class="nav-item fs-4">
           <a class="nav-link active" aria-current="page" href="{{ path('accueil') }}">Accueil</a>
         </li>
+        
+
+        {% if app.user %}
+        
         <li class="nav-item fs-4">
-          <a class="nav-link" href="{{ path('membres') }}">Gestion des membres</a>
+          <a class="nav-link" href="{{ path('app_membre') }}">Gestion des membres</a>
         </li>
         <li class="nav-item fs-4">
-          <a class="nav-link" href="">Vehicule</a>
+          <a class="nav-link" href="{{ path('app_vehicule') }}">Vehicule</a>
         </li>
         <li class="nav-item fs-4">
           <a class="nav-link" href="{{ path('app_agence') }}">Agences</a>
         </li>
         <li class="nav-item fs-4">
-          <a class="nav-link" href="">Formulaire</a>
+           <a class="nav-link" href="{{ path('app_logout') }}">Se Deconnecter</a>
+         </li>
+
+    {% else %}
+
+        <li class="nav-item fs-4">
+          <a class="nav-link" href="{{ path('registration')}}">S'inscrire</a>
         </li>
+
+        <li class="nav-item fs-4">
+          <a class="nav-link" href="{{ path('app_login')}}">Se Connecter</a>
+        </li>
+        
+       
+        {% endif %}
+
+       
+
       </ul>
     </div>
   </div>
