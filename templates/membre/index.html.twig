@@ -3,5 +3,54 @@
 {% block title %}Hello MembreController!{% endblock %}
 
 {% block body %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">pseudo</th>
+      <th scope="col">nom</th>
+      <th scope="col">prenom</th>
+      <th scope="col">email</th>
+      <th scope="col">civilité</th>
+      <th scope="col">statut</th>
+      <th scope="col">date</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+
+{% for membre in membres %}
+    <tr>
+      <th scope="row">{{ membre.id}}</th>
+      <td>{{ membre.pseudo}}</td>
+      <td>{{ membre.nom}}</td>
+      <td>{{ membre.prenom}}</td>
+      <td>{{ membre.email}}</td>
+      <td>{{ membre.civilite}}</td>
+      <td>{{ membre.statut}}</td>
+      <td>{{ membre.DateEnregistrement | date('d-m-Y') }} </td>
+       <td> 
+      
+        <a href="{{ path('details_membre', {'id' : membre.id}) }}"><img src="{{ asset('img/loupe.png') }}" width='' alt=""></a>
+        <a href="{{ path('update_membre', {'id' : membre.id}) }}"><img src="{{ asset('img/update.png') }}" width='' alt=""></a>
+        <a href="{{ path('delete_membre', {'id' : membre.id})}}"><img src="{{ asset('img/delete.png') }}" width='' alt=""></a>
+      </td>
+    </tr>
+    <tr> 
+    
+{% endfor %}
+
+</tbody>
+</table>
+
+
+
+{% for notification in app.flashes('succes') %}
+<div>{{ notification }}</div>
+{% endfor %}
+
+
+{{form(FormMembre)}}
+
 
 {% endblock %}
