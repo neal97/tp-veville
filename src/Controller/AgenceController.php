@@ -23,11 +23,11 @@ class AgenceController extends AbstractController
 
          $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid())
-        {
-            $manager->persist($agence);
-            $manager->flush(); 
-        }
+            if($form->isSubmitted() && $form->isValid())
+            {
+                $manager->persist($agence);
+                $manager->flush(); 
+            }
 
         return $this->render('agence/index.html.twig', [
             'controller_name' => 'AgenceController',
