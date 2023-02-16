@@ -7,9 +7,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: MembreRepository::class)]
-class Membre
+class Membre implements PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -42,10 +43,22 @@ class Membre
 
     #[ORM\OneToMany(mappedBy: 'id_membre', targetEntity: Commande::class)]
     private Collection $commandes;
+    
+    private string $password;
 
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
+    }
+
+    public function getPassword(): ?string
+    {
+        return $this->password ;
+    }
+
+    public function setPassword(string $password) : void
+    {
+        $this->password = $password ;
     }
 
     public function getId(): ?int
