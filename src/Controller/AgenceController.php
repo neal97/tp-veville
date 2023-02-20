@@ -27,6 +27,7 @@ class AgenceController extends AbstractController
         {
             $manager->persist($agence);
             $manager->flush(); 
+            return $this->redirectToRoute("app_agence");
         }
 
         return $this->render('agence/index.html.twig', [

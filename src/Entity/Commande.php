@@ -40,6 +40,12 @@ class Commande
     #[ORM\ManyToOne]
     private ?Agences $agence = null;
 
+    #[ORM\ManyToOne(inversedBy: 'commandes')]
+    private ?User $id_user = null;
+
+    #[ORM\ManyToOne(inversedBy: 'commandes')]
+    private ?Agences $fk_agence = null;
+
     public function __construct()
     {
         $this->id_agence = new ArrayCollection();
@@ -160,6 +166,30 @@ class Commande
     public function setAgence(?Agences $agence): self
     {
         $this->agence = $agence;
+
+        return $this;
+    }
+
+    public function getIdUser(): ?User
+    {
+        return $this->id_user;
+    }
+
+    public function setIdUser(?User $id_user): self
+    {
+        $this->id_user = $id_user;
+
+        return $this;
+    }
+
+    public function getFkAgence(): ?Agences
+    {
+        return $this->fk_agence;
+    }
+
+    public function setFkAgence(?Agences $fk_agence): self
+    {
+        $this->fk_agence = $fk_agence;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <nav class="navbar py-3 navbar-expand-lg bg-danger">
   <div class="container-fluid">
-    <a class="navbar-brand fs-4" href="{{ path('app_main') }}">Navbar</a>
+    <a class="navbar-brand fs-4" href="">Navbar</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -22,6 +22,9 @@
         <li class="nav-item fs-4">
           <a class="nav-link" href="{{ path('app_agence') }}">Agences</a>
         </li>
+         <li class="nav-item fs-4">
+          <a class="nav-link" href="{{ path('app_commande') }}">Commande</a>
+        </li>
         <li class="nav-item fs-4">
            <a class="nav-link" href="{{ path('app_logout') }}">Se Deconnecter</a>
          </li>
@@ -35,6 +38,7 @@
         <li class="nav-item fs-4">
           <a class="nav-link" href="{{ path('app_login')}}">Se Connecter</a>
         </li>
+
         
        
         {% endif %}
