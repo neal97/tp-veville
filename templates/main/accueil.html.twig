@@ -2,12 +2,77 @@
 
 
 {% block body %}
+
   {% if app.user %}
         <div class="mb-3">
             BIENVENUE {{ app.user.userIdentifier }}
         </div>
     {% endif %}
-<img src="{{ asset('img/manga1.jpg') }}" width='100%' alt="">
 
+<section id="haut" >
+
+<h1>BIENVENUE A BORD</h1>
+<h3>Location de voiture 24h/24 et 7j sur 7</h3>
+
+</section>
+
+
+<section>
+
+<form method="post">
+
+<label for="">Agence</label>
+<select name="agence" id="">
+
+{% for value in agence %}
+ <option value="{{value.id }}">{{value.titre}}-{{value.ville}}</option> 
+{% endfor %}
+
+
+
+</select>
+
+<label for="">date de depart</label>
+<input name="debut" type="datetime-local">
+
+
+<label for="">Date de fin</label>
+<input name="fin" type="datetime-local">
+
+<button>Validez</button>
+
+</form>
+
+
+
+{% for vehicules in vehicule %}
+
+<div class="card m-2" style="width: 18rem;">
+    
+    <div class="card-body">
+    <img src="{{vehicules.photo}}" alt="" style="width: 15rem;">
+      <h5 class="card-title">{{vehicules.marque}} {{vehicules.modele}}</h5>
+      <p>{{vehicules.description}}</p>
+      
+      <p>Agence de {{vehicules.ville}}</p>
+      {% if filterVehicule %}
+
+        <p>{{vehicules.prix * day}}€</p>
+
+         <a href="{{ path('postCommande',{'idVehicule' : vehicules.idVehicule, 'idAgence' : vehicules.idAgence, 'idUser' : app.user.id, 'prixTotal' : vehicules.prix * day, 'debut' : debut, 'fin' : fin }) }}">Reserver et payer</a>
+
+        {% else %}
+          
+      <p>{{vehicules.prix}}€</p>
+      <a href="">Reserver et payer</a>
+      {% endif %}
+      
+      
+      
+    </div>
+  </div>
+{% endfor %}
+
+</section>
 
 {% endblock %}

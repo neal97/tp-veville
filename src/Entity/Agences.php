@@ -36,11 +36,15 @@ class Agences
     #[ORM\OneToMany(mappedBy: 'id_agence', targetEntity: Vehicule::class)]
     private Collection $vehicules;
 
+    #[ORM\OneToMany(mappedBy: 'fk_agence', targetEntity: Commande::class)]
+    private Collection $commandes;
+
     
 
     public function __construct()
     {
         $this->vehicules = new ArrayCollection();
+        $this->commandes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -144,6 +148,36 @@ class Agences
             // set the owning side to null (unless already changed)
             if ($vehicule->getIdAgence() === $this) {
                 $vehicule->setIdAgence(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Commande>
+     */
+    public function getCommandes(): Collection
+    {
+        return $this->commandes;
+    }
+
+    public function addCommande(Commande $commande): self
+    {
+        if (!$this->commandes->contains($commande)) {
+            $this->commandes->add($commande);
+            $commande->setFkAgence($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommande(Commande $commande): self
+    {
+        if ($this->commandes->removeElement($commande)) {
+            // set the owning side to null (unless already changed)
+            if ($commande->getFkAgence() === $this) {
+                $commande->setFkAgence(null);
             }
         }
 

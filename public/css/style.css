@@ -1,0 +1,17 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+  }
+
+
+#haut {
+
+    background-image: url("../img/voiturefond.jpg");
+    height: 60rem;
+    background-size: cover;
+    margin: 6rem;
+    height: 50rem;
+    color: white;
+}

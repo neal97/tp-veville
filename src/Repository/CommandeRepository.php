@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Commande;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -29,6 +30,18 @@ class CommandeRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+
+    public function findCommande()
+{
+    return $this->createQueryBuilder('c')
+        ->select('v.id as idVehicule', 'a.id as idAgence','c.id as idCommande','u.id as idUser','v.photo', 'v.marque', 'v.modele', 'v.description',
+         'v.prix_journalier as prix', 'a.ville', 'a.titre', 'c.date_enregistrement', 'c.date_heure_depart ', 'c.date_heure_fin ','c.prix_total', 'u.email')
+        ->innerJoin('App\Entity\Agences', 'a', Join::WITH , 'a.id = c.fk_agence')
+        ->innerJoin('App\Entity\Vehicule', 'v', Join::WITH , 'v.id = c.id_vehicule')
+        ->innerJoin('App\Entity\User', 'u', Join::WITH , 'u.id = c.id_user')
+        ->getQuery()
+        ->getResult();
+}
 
     public function remove(Commande $entity, bool $flush = false): void
     {

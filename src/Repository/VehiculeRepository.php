@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Vehicule;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -38,6 +39,29 @@ class VehiculeRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+
+
+    
+
+    public function findVehiculesAndAgences()
+{
+    return $this->createQueryBuilder('v')
+        ->select('v.id as idVehicule', 'a.id as idAgence','v.photo', 'v.marque', 'v.modele', 'v.description', 'v.prix_journalier as prix', 'a.ville')
+        ->innerJoin('App\Entity\Agences', 'a', Join::WITH , 'a.id = v.id_agence')
+        ->getQuery()
+        ->getResult();
+}
+
+public function findVehiculeByIdAgence($idAgence)
+{
+    return $this->createQueryBuilder('v')
+    ->select('v.id as idVehicule', 'a.id as idAgence','v.photo', 'v.marque', 'v.modele', 'v.description', 'v.prix_journalier as prix', 'a.ville')
+    ->innerJoin('App\Entity\Agences', 'a', Join::WITH , 'a.id = v.id_agence')
+    ->andWhere('a.id = :val')
+    ->setParameter('val', $idAgence)
+    ->getQuery()
+    ->getResult();
+}
 
 //    /**
 //     * @return Vehicule[] Returns an array of Vehicule objects

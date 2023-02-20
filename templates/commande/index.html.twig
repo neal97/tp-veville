@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande{% endblock %}
+
+{% block body %}
+
+
+    {# {{ dump(commande) }} #}
+
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Commande</th>
+      <th scope="col">Utilisateurs</th>
+      <th scope="col">Vehicule</th>
+      <th scope="col">photo</th>
+      <th scope="col">Agence</th>
+      <th scope="col">Date et Heure Départ</th>
+      <th scope="col">Date et heure Fin</th>
+      <th scope="col">Prix Total</th>
+      <th scope="col">date d'enregistrement</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+
+{% for value in commande %}
+    <tr>
+      <th scope="row">{{ value.idCommande}}</th>
+      <td>{{ value.email}} </td>
+      <td>{{ value.marque}}  {{ value.modele}}</td>
+     <td><img src="{{ value.photo}}" width="100px" alt=""></td> 
+      <td>{{ value.titre}} {{ value.ville}}</td>
+      <td>{{ value.date_heure_depart | date('d-m-Y') }}</td>
+      <td>{{ value.date_heure_fin | date('d-m-Y') }}</td>
+      <td>{{ value.prix_total}} €</td>
+      <td>{{ value.date_enregistrement | date('d-m-Y') }}</td>
+      
+      
+       <td> 
+      
+        <a href=""><img src="{{ asset('img/loupe.png') }}" width='' alt=""></a>
+        <a href=""><img src="{{ asset('img/update.png') }}" width='' alt=""></a>
+        <a href=""><img src="{{ asset('img/delete.png') }}" width='' alt=""></a>
+      </td>
+    </tr>
+    <tr> 
+    
+{% endfor %}
+
+</tbody>
+</table>
+
+
+{% endblock %}
